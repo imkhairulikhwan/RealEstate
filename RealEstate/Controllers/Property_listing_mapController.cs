@@ -20,10 +20,11 @@ namespace RealEstate.Controllers
 
 		public IActionResult Index(string searchin, string propertyArea, string propertyType)
 		{
-			_propertyArea = (String.IsNullOrEmpty(propertyArea) ? "" : propertyArea);
-			_propertyType = (String.IsNullOrEmpty(propertyType) ? "" : propertyType);
-
-			var listProperty = _context.Property.Where(a => a.Location.Contains(propertyArea) && a.Type.Contains(propertyArea)).ToList();
+			//_propertyArea = (String.IsNullOrEmpty(propertyArea) ? "" : propertyArea);
+			//_propertyType = (String.IsNullOrEmpty(propertyType) ? "" : propertyType);
+			List<Property> listProperty;
+			
+			listProperty = _context.Property.Where(a => (String.IsNullOrEmpty(propertyArea) || a.Location.Contains(propertyArea)) && (String.IsNullOrEmpty(propertyType) || a.Type.Contains(propertyType))).ToList();
 			var listAgent = _context.Agent.ToList();
 
 			return View();
