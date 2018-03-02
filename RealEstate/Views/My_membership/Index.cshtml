@@ -1,0 +1,299 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Real Estate</title>
+    <!-- Bootstrap -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900%7COpen+Sans" rel="stylesheet" />
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate.css" rel="stylesheet">
+    <link href="lib/selectric/selectric.css" rel="stylesheet">
+    <link href="lib/aos/aos.css" rel="stylesheet">
+    <link href="lib/Magnific-Popup/magnific-popup.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/selectric/jquery.selectric.js"></script>
+    <script src="lib/tinymce/tinymce.min.js"></script>
+    <script src="lib/aos/aos.js"></script>
+    <script src="lib/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+    <script src="lib/sticky-sidebar/ResizeSensor.min.js"></script>
+    <script src="lib/sticky-sidebar/theia-sticky-sidebar.min.js"></script>
+    <script src="lib/lib.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+    <div id="main">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="menu">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Index" asp-action="Index"><span class="icon-uilove-realestate"></span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-content" aria-controls="menu-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu-content">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Home <span class="sr-only">(current)</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a asp-controller="Index" asp-action="Index" class="dropdown-item">Homepage 1</a>
+                                <a asp-controller="Index2" asp-action="Index" class="dropdown-item">Homepage 2</a>
+                                <a asp-controller="Index3" asp-action="Index" class="dropdown-item">Homepage 3</a>
+                                <a asp-controller="Index4" asp-action="Index" class="dropdown-item">Homepage 4</a>
+                                <a asp-controller="Index5" asp-action="Index" class="dropdown-item">Homepage 5</a>
+                                <a asp-controller="Index6" asp-action="Index" class="dropdown-item">Homepage 6</a>
+                                <a asp-controller="Index7" asp-action="Index" class="dropdown-item">Homepage 7</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" My_listing_add="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Listings
+                            </a>
+                            <div class="dropdown-menu">
+                                <a asp-controller="Property_listing" class="dropdown-item">List View</a>
+                                <a asp-controller="Property_grid" class="dropdown-item">Grid View</a>
+                                <a asp-controller="Property_listing_map" class="dropdown-item">Map View</a>
+                                <a asp-controller="Property_single" class="dropdown-item">Single View 1</a>
+                                <a asp-controller="Property_single2" class="dropdown-item">Single View 2</a>
+                                <a asp-controller="Property_single3" class="dropdown-item">Single View 3</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Agents
+                            </a>
+                            <div class="dropdown-menu">
+                                <a asp-controller="Agent_list" class="dropdown-item">Agent List</a>
+                                <a asp-controller="Agent" class="dropdown-item">Agent Profile</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown megamenu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pages
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="container">
+                                    <div class="row justify-content-md-center">
+                                        <div class="col col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-3">
+                                                    <ul class="list-unstyled">
+                                                        <li><a asp-controller="Index">Homepage 1</a></li>
+                                                        <li><a asp-controller="Index2">Homepage 2</a></li>
+                                                        <li><a asp-controller="Index3">Homepage 3</a></li>
+                                                        <li><a asp-controller="Index4">Homepage 4</a></li>
+                                                        <li><a asp-controller="Index5">Homepage 5</a></li>
+                                                        <li><a asp-controller="Index6">Homepage 6</a></li>
+                                                        <li><a asp-controller="Index7">Homepage 7</a></li>
+                                                        <li class="title">Login Pages</li>
+                                                        <li><a asp-controller="Signin">Signin</a></li>
+                                                        <li><a asp-controller="Register">Register</a></li>
+                                                        <li><a asp-controller="Forgot_password">Forgot Password</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6 col-lg-3">
+                                                    <ul class="list-unstyled">
+                                                        <li class="title">Property Listing</li>
+                                                        <li><a asp-controller="Property_listing">List View</a></li>
+                                                        <li><a asp-controller="Property_grid">Grid View</a></li>
+                                                        <li><a asp-controller="Property_listing_map">Map View</a></li>
+                                                        <li class="title">Single Property</li>
+                                                        <li><a asp-controller="Property_single">Single View 1</a></li>
+                                                        <li><a asp-controller="Property_single2">Single View 2</a></li>
+                                                        <li><a asp-controller="Property_single3">Single View 3</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6 col-lg-3">
+                                                    <ul class="list-unstyled">
+                                                        <li class="title">Other Pages</li>
+                                                        <li><a asp-controller="Plans">Plans</a></li>
+                                                        <li><a asp-controller="Information_page">Information Page</a></li>
+                                                        <li><a asp-controller="Coming_soon">Coming Soon</a></li>
+                                                        <li><a asp-controller="Error_404">Error Page</a></li>
+                                                        <li><a asp-controller="Success">Success Page</a></li>
+                                                        <li><a asp-controller="Contact">Contact Page</a></li>
+                                                        <li><a asp-controller="Compare">Compare Properties</a></li>
+                                                        <li class="title">Agent Pages</li>
+                                                        <li><a asp-controller="Agent_list">Agent List</a></li>
+                                                        <li><a asp-controller="Agent">Agent Profile</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6 col-lg-3">
+                                                    <ul class="list-unstyled">
+                                                        <li class="title">Account Pages</li>
+                                                        <li><a asp-controller="My_listing_add">Add Listing</a></li>
+                                                        <li><a asp-controller="My_bookmarked_listings">Bookmarked Listing</a></li>
+                                                        <li><a asp-controller="My_listings">My Listings</a></li>
+                                                        <li><a asp-controller="My_profile">My Profile</a></li>
+                                                        <li><a asp-controller="My_password">Change Password</a></li>
+                                                        <li><a asp-controller="My_notifications">Notifications</a></li>
+                                                        <li><a asp-controller="My_membership">Membership</a></li>
+                                                        <li><a asp-controller="My_payments">Payments</a></li>
+                                                        <li><a asp-controller="My_account">Account</a></li>
+                                                        <li class="title">Blog Pages</li>
+                                                        <li><a asp-controller="Blog">Blog Archive</a></li>
+                                                        <li><a asp-controller="Blog_single">Blog Single</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+
+
+                        <li class="nav-item dropdown user-account">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="user-image" style="background-image:url(' img/demo/profile3.jpg');"></span> Hi, John
+                            </a>
+                            <div class="dropdown-menu">
+                                <a asp-controller="My_profile" class="dropdown-item">My Profile</a>
+                                <a asp-controller="My_password" class="dropdown-item">Change Password</a>
+                                <a asp-controller="My_notifications" class="dropdown-item">Notifications</a>
+                                <a asp-controller="My_membership" class="dropdown-item">Membership</a>
+                                <a asp-controller="My_payments" class="dropdown-item">Payments</a>
+                                <a asp-controller="My_account" class="dropdown-item">Account</a>
+                            </div>
+                        </li>
+                        <li class="nav-item add-listing"><a class="nav-link" asp-controller="My_listing_add"><span><i class="fa fa-plus" aria-hidden="true"></i> Add listing</span></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div id="content">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-12 col-xl-10">
+                        <div class="row has-sidebar">
+                            <div class="col-md-5 col-lg-4 col-xl-4">
+                                <div id="sidebar" class="sidebar-left">
+                                    <div class="sidebar_inner">
+                                        <div class="list-group no-border list-unstyled">
+                                            <span class="list-group-item heading">Manage Listings</span>
+                                            <a asp-controller="My_listing_add" class="list-group-item"><i class="fa fa-fw fa-plus-square-o"></i> Add Listing</a>
+                                            <a asp-controller="My_bookmarked_listings" class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span><i class="fa fa-fw fa-bookmark-o"></i> Bookmarked Listing</span>
+                                                <span class="badge badge-primary badge-pill">10</span>
+                                            </a>
+                                            <a asp-controller="My_listings" class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span><i class="fa fa-fw fa-bars"></i> My Listings</span>
+                                                <span class="badge badge-primary badge-pill">7</span>
+                                            </a>
+                                            <span class="list-group-item heading">Manage Account</span>
+                                            <a asp-controller="My_profile" class="list-group-item"><i class="fa fa-fw fa-pencil"></i> My Profile</a>
+                                            <a asp-controller="My_password" class="list-group-item"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                                            <a asp-controller="My_notifications" class="list-group-item"><i class="fa fa-fw fa-bell-o"></i> Notifications</a>
+                                            <a asp-controller="My_membership" class="list-group-item active"><i class="fa fa-fw fa-cubes"></i> Membership</a>
+                                            <a asp-controller="My_payments" class="list-group-item"><i class="fa fa-fw fa-credit-card"></i> Payments</a>
+                                            <a asp-controller="My_account" class="list-group-item"><i class="fa fa-fw fa-cog"></i> Account</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-lg-8 col-xl-8">
+                                <div class="page-header bordered">
+                                    <h1>Membership</h1>
+                                </div>
+                                <form action="index.php">
+
+                                    <h3 class="subheadline">Current Plans</h3>
+
+                                    <div class="card">
+                                        <div class="media mt-0">
+                                            <div class="media-left"> <a asp-controller="Agent"> <img class="media-object rounded-circle" src="img/demo/badge.png" width="100" height="100" alt=""> </a> </div>
+                                            <div class="media-body">
+                                                <a class="btn btn-link float-right" href="#">Cancel Plan</a>
+                                                <h4 class="media-heading"><a asp-controller="Plans">Plan <strong>Pro</strong></a></h4>
+                                                <p class="text-muted">Expiring on 1st August 2018</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a asp-controller="Plans" class="btn btn-light">Upgrade Plan</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-circle" id="to-top"><i class="fa fa-angle-up"></i></button>
+        <footer id="footer">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-10">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <p><span class="icon-uilove-realestate"></span></p>
+                                <address>
+                                    <strong>Twitter, Inc.</strong><br>
+                                    1355 Market Street, Suite 900<br>
+                                    San Francisco, CA 94103<br>
+                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                </address>
+                                <p class="text-muted">
+                                    Copyright &copy; 2016<br />
+                                    All rights reserved
+                                </p>
+                            </div>
+                            <div class="col-md-2  col-sm-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Team</a></li>
+                                    <li><a href="#">Security</a></li>
+                                    <li><a href="#">Plans</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">For Rent</a></li>
+                                    <li><a href="#">For Sale</a></li>
+                                    <li><a href="#">Commercial</a></li>
+                                    <li><a href="#">Agents</a></li>
+                                    <li><a href="#">Property Guides</a></li>
+                                    <li><a href="#">Jobs</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="social-sharebox"> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube-play"></i></a> <a href="#"><i class="fa fa-pinterest"></i></a> </div>
+                                <form>
+                                    <h4>Subscribe Newsletter</h4>
+                                    <div class="input-group input-group-lg">
+                                        <input type="email" class="form-control form-control-lg" placeholder="Email Address">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button">Go!</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
