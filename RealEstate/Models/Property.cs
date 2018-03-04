@@ -13,6 +13,8 @@ namespace RealEstate.Models
 		public string SquareFeet { get; set; }
 		public string Type { get; set; }
 		public string ListedOn { get; set; }
-		public string ListedBy { get; set; }		
-    }
+		public string ListedBy { get; set; }
+		public string Price { get; set; }
+		public string Image { get; set; }
+	}
 }

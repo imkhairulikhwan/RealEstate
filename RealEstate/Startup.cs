@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Models;
+using RealEstate.Data;
+using Microsoft.AspNetCore.Identity;
+using RealEstate.Services;
 
 namespace RealEstate
 {
@@ -23,7 +26,23 @@ namespace RealEstate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+			services.AddDbContext<ApplicationDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
+
+			// Add application services.
+			services.AddTransient<IEmailSender, EmailSender>();
+
+			services.AddAuthentication().AddFacebook(facebookOptions =>
+			{
+				facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+				facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+			});
+
+			services.AddMvc();			
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(connection));
@@ -36,7 +55,8 @@ namespace RealEstate
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-            }
+				app.UseDatabaseErrorPage();
+			}
             else
             {
                 app.UseExceptionHandler("/Index/Error");
@@ -44,7 +64,9 @@ namespace RealEstate
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+			app.UseAuthentication();
+
+			app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",

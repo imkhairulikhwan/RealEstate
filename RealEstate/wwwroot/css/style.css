@@ -173,7 +173,7 @@ blockquote:before {
 	z-index: 1052;
 	box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05);
 	background-image:none;
-	background-color: #563d7c;
+	background-color: rgba(0,0,0,1);
 	margin-bottom: 15px;
 	transition: background-color 0.3s ease;
 	margin-left: auto;
