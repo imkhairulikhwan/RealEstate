@@ -30,7 +30,7 @@ namespace RealEstate.Controllers
 				)
 				.ToList();
 
-			var listAgent = _context.Agent.ToList();
+			var listAgent = _context.Agent.ToList();			
 
 			return View(listProperty);
         }

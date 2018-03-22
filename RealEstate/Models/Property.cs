@@ -16,5 +16,7 @@ namespace RealEstate.Models
 		public string ListedBy { get; set; }
 		public string Price { get; set; }
 		public string Image { get; set; }
+		public decimal Lat { get; set; }
+		public decimal Lng { get; set; }
 	}
 }

@@ -38,13 +38,17 @@ namespace RealEstate
 
 			services.AddAuthentication().AddFacebook(facebookOptions =>
 			{
-				facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-				facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+				//facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+				//facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+
+				facebookOptions.AppId = "152060522222780";
+				facebookOptions.AppSecret = "b7c8e2f593fc8973d07eb3f1772f3c09";
 			});
 
 			services.AddMvc();			
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
+			var connection = @"Data Source=SQL6003.site4now.net;Initial Catalog=DB_A31034_navinest;User Id=DB_A31034_navinest_admin;Password=P@ssw0rd;";
             services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(connection));
         }
 

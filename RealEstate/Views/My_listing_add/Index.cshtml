@@ -149,7 +149,6 @@
 														<li><a asp-controller="My_profile">My Profile</a></li>
 														<li><a asp-controller="My_password">Change Password</a></li>
 														<li><a asp-controller="My_notifications">Notifications</a></li>
-														<li><a asp-controller="My_membership">Membership</a></li>
 														<li><a asp-controller="My_payments">Payments</a></li>
 														<li><a asp-controller="My_account">Account</a></li>
 														<li class="title">Blog Pages</li>
@@ -177,7 +176,6 @@
 								<a asp-controller="My_profile" class="dropdown-item">My Profile</a>
 								<a asp-controller="My_password" class="dropdown-item">Change Password</a>
 								<a asp-controller="My_notifications" class="dropdown-item">Notifications</a>
-								<a asp-controller="My_membership" class="dropdown-item">Membership</a>
 								<a asp-controller="My_payments" class="dropdown-item">Payments</a>
 								<a asp-controller="My_account" class="dropdown-item">Account</a>
 							</div>
@@ -212,7 +210,6 @@
 											<a asp-controller="My_profile" class="list-group-item"><i class="fa fa-fw fa-pencil"></i> My Profile</a>
 											<a asp-controller="My_password" class="list-group-item"><i class="fa fa-fw fa-lock"></i> Change Password</a>
 											<a asp-controller="My_notifications" class="list-group-item"><i class="fa fa-fw fa-bell-o"></i> Notifications</a>
-											<a asp-controller="My_membership" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Membership</a>
 											<a asp-controller="My_payments" class="list-group-item"><i class="fa fa-fw fa-credit-card"></i> Payments</a>
 											<a asp-controller="My_account" class="list-group-item"><i class="fa fa-fw fa-cog"></i> Account</a>
 										</div>
@@ -221,13 +218,13 @@
 							</div>
 							<div class="col-md-7 col-lg-8 col-xl-8">
 								<div class="page-header bordered">
-									<h1>Submit your property <small>We've over 15 Lac buyers and tenants for you!</small></h1>
+									<h1>Submit your property <small>We've over 50,000 buyers and tenants for you!</small></h1>
 								</div>
-								<form action="index.php">
+								<form action="my_listing_add">
 									<h3 class="subheadline">Basic Details</h3>
 									<div class="form-group">
 										<label for="title">Property Title</label>
-										<input type="text" class="form-control form-control-lg" id="title" placeholder="Property Title" autofocus>
+										<input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Property Title" autofocus>
 									</div>
 									<div class="form-group">
 										<label>For Sale/Rent?</label>
@@ -243,8 +240,8 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label>Price (IN USD $)</label>
-										<input type="text" class="form-control form-control-lg" placeholder="Price (IN USD $)">
+										<label>Price (IN MYR RM)</label>
+										<input type="text" name="price" class="form-control form-control-lg" placeholder="Price (IN MYR RM)">
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
@@ -280,13 +277,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Area Sq/ft</label>
-												<input type="text" class="form-control form-control-lg" placeholder="">
+												<input type="text" class="form-control form-control-lg" name="area" placeholder="">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>MLS No.</label>
-												<input type="text" class="form-control form-control-lg" placeholder="">
+												<input type="text" class="form-control form-control-lg" name="mlsno" placeholder="">
 											</div>
 										</div>
 									</div>
@@ -295,13 +292,13 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Location</label>
-												<input type="text" class="form-control form-control-lg" id="autocomplete" placeholder="Enter your location">
+												<input type="text" class="form-control form-control-lg" name="location" id="autocomplete" placeholder="Enter your location">
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Address</label>
-												<input type="text" class="form-control form-control-lg" placeholder="">
+												<input type="text" class="form-control form-control-lg" name="address" placeholder="">
 											</div>
 										</div>
 									</div>
@@ -309,13 +306,13 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>City</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="locality">
+												<input type="text" class="form-control form-control-lg" name="locality" placeholder="" id="locality">
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>State</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="administrative_area_level_1">
+												<input type="text" class="form-control form-control-lg" name="state" placeholder="" id="administrative_area_level_1">
 											</div>
 										</div>
 									</div>
@@ -323,13 +320,13 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Country</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="country">
+												<input type="text" class="form-control form-control-lg" name="country" placeholder="" id="country">
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label>Zipcode</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="postal_code">
+												<input type="text" class="form-control form-control-lg" name="postal_code" placeholder="" id="postal_code">
 											</div>
 										</div>
 									</div>
@@ -337,62 +334,62 @@
 										<h3 class="subheadline">Additional Features</h3>
 										<div class="feature-list three_cols">
 											<div class="checkbox">
-												<input type="checkbox" id="Garden">
+												<input type="checkbox" name="Garden" id="Garden">
 												<label for="Garden">Garden</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Gym">
+												<input type="checkbox" name="Gym" id="Gym">
 												<label for="Gym">Gym</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Internet">
+												<input type="checkbox" name="Internet" id="Internet">
 												<label for="Internet">Internet</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Pool">
+												<input type="checkbox" name="Pool" id="Pool">
 												<label for="Pool">Swimming Pool</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Window">
+												<input type="checkbox" name="Window" id="Window">
 												<label for="Window">Window Covering</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Parking">
+												<input type="checkbox" name="Parking" id="Parking">
 												<label for="Parking">Parking</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="School">
+												<input type="checkbox" name="School" id="School">
 												<label for="School">School</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Bank">
+												<input type="checkbox" name="Bank" id="Bank">
 												<label for="Bank">Bank</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Metro">
+												<input type="checkbox" name="Metro" id="Metro">
 												<label for="Metro">Metro</label>
 											</div>
 											<div class="checkbox">
-												<input type="checkbox" id="Airport">
+												<input type="checkbox" name="Airport" id="Airport">
 												<label for="Airport">Airport</label>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label>Property Description</label>
-										<textarea class="form-control form-control-lg text-editor" placeholder=""></textarea>
+										<textarea class="form-control form-control-lg text-editor" name="propertyDescription" placeholder=""></textarea>
 									</div>
 									<div class="form-group">
 										<h3 class="subheadline">Upload Photos</h3>
 										<div class="ui-dropzone">
 											<div class="icon"></div>
 											<div>Drag and drop images or click to upload</div>
-											<input type="file" class="form-control form-control-lg" id="gallery" multiple>
+											<input type="file" name="galleries" class="form-control form-control-lg" id="gallery" multiple>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="checkbox">
-											<input type="checkbox" id="featured">
+											<input type="checkbox" name="featured" id="featured">
 											<label for="featured">Yes ‚ feature this listing. </label>
 										</div>
 									</div>
@@ -494,7 +491,7 @@
 			}
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZIvBJ27DhYgGXpayrQN2H-vxLgqoP7JA&libraries=places&callback=initAutocomplete" async defer></script>
 	<script>
 		tinymce.init({
 			selector: '.text-editor',
