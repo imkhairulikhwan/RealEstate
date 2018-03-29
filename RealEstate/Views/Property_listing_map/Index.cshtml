@@ -164,6 +164,7 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<span class="user-image" style="background-image:url(' img/demo/profile3.jpg');"></span> Hi, @username !
 							</a>
+							
 							<div class="dropdown-menu">
 								<a asp-controller="My_profile" class="dropdown-item">My Profile</a>
 								<a asp-controller="My_password" class="dropdown-item">Change Password</a>
@@ -263,7 +264,7 @@
 											<div class="col-lg-5">
 												<div class="item-image">
 													<a asp-controller="Property_single">
-														<img src="img/demo/property/unit/@property.Image" class="img-fluid" alt="">
+														<img src="~/img/demo/property/unit/@property.Image" class="img-fluid" alt="">
 														<div class="item-badges">
 															<div class="item-badge-left">Sponsored</div>
 															<div class="item-badge-right">For Sale</div>
@@ -537,8 +538,17 @@
 				var marker = new google.maps.Marker({
 					position: position,
 					map: map,
-					icon: arrow_icon,
+					//icon: arrow_icon,
+					icon: '~/img/demo/uni_logo.jpg',
 				});
+
+				if (location.uni) {
+					marker.icon = 'img/demo/uni_logo.jpg';
+				} else {
+					marker.icon = arrow_icon;
+				}
+
+
 				google.maps.event.addListener(marker, 'click', function (evt) {
 					infoWin.setContent(location.info);
 					infoWin.open(map, marker);
@@ -562,30 +572,37 @@
 		var locations = [{
 			lat: 3.064609,
 			lng: 101.6163656,
+			uni: false,
 			info: "3 bed semi-detached house for rent near Taylor's Lakeside"
 		}, {
 			lat: 3.0671563,
 			lng: 101.60389020000002,
+			uni: false,
 			info: "2 bed room house for rent near Sunway University"
 		}, {
 			lat: 3.0648608,
 			lng: 101.60098249999999,
+			uni: true,
 			info: "Monash University"
 		}, {
 			lat: 3.073355,
 			lng: 101.61005799999998,
+			uni: false,
 			info: "The One Academy"
 		}, {
 			lat: 2.8139714,
 			lng: 101.75824110000008,
+			uni: true,
 			info: "Inti International University & College Malaysia"
 		}, {
 			lat: 3.0778207,
 			lng: 101.58659579999994,
+			uni: false,
 			info: "Westminster International College"
 		}, {
 			lat: 3.0616153,
 			lng: 101.59360979999997,
+			uni: true,
 			info: "Segi College Subang Jaya"
 		},];		
 

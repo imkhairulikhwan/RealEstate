@@ -18,7 +18,7 @@ namespace RealEstate.Controllers
 			_context = context;
 		}
 
-		public IActionResult Index(string searchin, string propertyArea, string propertyType)
+		public IActionResult Index(string searchin, string propertyArea, string propertyType, string university)
 		{
 			//_propertyArea = (String.IsNullOrEmpty(propertyArea) ? "" : propertyArea);
 			//_propertyType = (String.IsNullOrEmpty(propertyType) ? "" : propertyType);
