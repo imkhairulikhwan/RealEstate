@@ -22,15 +22,20 @@ namespace RealEstate.Controllers
 		{
 			//_propertyArea = (String.IsNullOrEmpty(propertyArea) ? "" : propertyArea);
 			//_propertyType = (String.IsNullOrEmpty(propertyType) ? "" : propertyType);
-			List<Property> listProperty;
-			
-			listProperty = _context.Property.Where(
+			List<Property> listProperty;            
+            
+            listProperty = _context.Property.Where(
 					a => (String.IsNullOrEmpty(propertyArea) || a.Location.Contains(propertyArea)) && 
 					(String.IsNullOrEmpty(propertyType) || a.Type.Contains(propertyType))
 				)
 				.ToList();
 
-			var listAgent = _context.Agent.ToList();			
+            foreach (var item in listProperty)
+            {
+                item.university = university;
+            }
+
+            var listAgent = _context.Agent.ToList();			
 
 			return View(listProperty);
         }

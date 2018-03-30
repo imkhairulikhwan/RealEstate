@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealEstate.Models
 {
@@ -18,5 +19,8 @@ namespace RealEstate.Models
 		public string Image { get; set; }
 		public decimal Lat { get; set; }
 		public decimal Lng { get; set; }
+
+        [NotMapped]
+        public string university { get; set; }
 	}
 }

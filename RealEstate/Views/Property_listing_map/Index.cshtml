@@ -517,11 +517,119 @@
 	<script src="lib/map/markerclusterer.js"></script>
 	<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvuspZieDAMlpAVAe2qwlvkk8oQU34dtg&callback=initMap"></script>
 	<script>
-		function initMap() {
+        function initMap() {
+            //var locations = [
+            //    ['Bondi Beach', -33.890542, 151.274856, 4],
+            //    ['Coogee Beach', -33.923036, 151.259052, 5],
+            //    ['Cronulla Beach', -34.028249, 151.157507, 3],
+            //    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+            //    ['Maroubra Beach', -33.950198, 151.259302, 1]
+            //];
+
+            var university = '@Model.FirstOrDefault().university';
+
+            var locations = [{
+                lat: 3.064609,
+                lng: 101.6163656,
+                uni: false,
+                info: "3 bed semi-detached house for rent near Taylor's Lakeside"
+            }, {
+                lat: 3.0671563,
+                lng: 101.60389020000002,
+                uni: false,
+                info: "2 bed room house for rent near Sunway University"
+            }, {
+                lat: 3.0648608,
+                lng: 101.60098249999999,
+                uni: true,
+                info: "Monash University"
+            }, {
+                lat: 3.073355,
+                lng: 101.61005799999998,
+                uni: false,
+                info: "The One Academy"
+            }, {
+                lat: 2.8139714,
+                lng: 101.75824110000008,
+                uni: true,
+                info: "Inti International University & College Malaysia"
+            }, {
+                lat: 3.0778207,
+                lng: 101.58659579999994,
+                uni: false,
+                info: "Westminster International College"
+            }, {
+                lat: 3.0616153,
+                lng: 101.59360979999997,
+                uni: true,
+                info: "Segi College Subang Jaya"
+            },];	
+
+            //default center position
+            var centerPosition = new google.maps.LatLng(3.0616153, 101.59360979999997);
+            
+            for (i = 0; i < locations.length; i++) {
+                if (locations[i].info.toLowerCase().search(university) > -1) {
+                    centerPosition = new google.maps.LatLng(locations[i].lat, locations[i].lng);
+                }
+            }
+
+            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+                zoom: 13,
+                //center: new google.maps.LatLng(3.0616153, 101.59360979999997),
+                center: centerPosition,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            var arrow_icon = {
+                path: 'M50,0C31.294,0,16.129,15.165,16.129,33.87c0,0.401,0.012,0.809,0.03,1.221c0.127,3.558,0.798,6.975,1.939,10.172  C25.324,69.015,50,100,50,100s24.673-30.982,31.9-54.734c1.143-3.197,1.813-6.617,1.939-10.175c0.02-0.412,0.031-0.819,0.031-1.221  C83.871,15.165,68.706,0,50,0z M50,50.459c-9.161,0-16.589-7.428-16.589-16.589c0-9.16,7.428-16.588,16.589-16.588  c9.162,0,16.589,7.428,16.589,16.588C66.589,43.031,59.162,50.459,50,50.459z',
+                strokeOpacity: 1,
+                strokeWeight: 1,
+                fillColor: '#563d7c',
+                fillOpacity: 1,
+                rotation: 0,
+                scale: 0.4
+            };
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+                    icon: 'img/demo/uni_logo.jpg',
+                    map: map
+                });
+                
+                if (locations[i].uni == true) {
+                    marker.icon = 'img/demo/uni_logo.jpg';
+				} else {
+					marker.icon = arrow_icon;
+				}
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i].info);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+        }
+
+
+        function initMap2() {
+            var centerPosition = new google.maps.LatLng(2.8139714, 101.75824110000008);
 			var bounds = new google.maps.LatLngBounds();
 			var map;
-			map = new google.maps.Map(document.getElementById("map_canvas"));
-			map.setTilt(45);
+            map = new google.maps.Map(document.getElementById("map_canvas"), {
+                //center: { lat: 36.964, lng: -122.015 }
+                center: { lat: 3.0671563, lng: 101.60389020000002 }
+            });
+            map.setTilt(45);            
+            
+
 			var arrow_icon = {
 				path: 'M50,0C31.294,0,16.129,15.165,16.129,33.87c0,0.401,0.012,0.809,0.03,1.221c0.127,3.558,0.798,6.975,1.939,10.172  C25.324,69.015,50,100,50,100s24.673-30.982,31.9-54.734c1.143-3.197,1.813-6.617,1.939-10.175c0.02-0.412,0.031-0.819,0.031-1.221  C83.871,15.165,68.706,0,50,0z M50,50.459c-9.161,0-16.589-7.428-16.589-16.589c0-9.16,7.428-16.588,16.589-16.588  c9.162,0,16.589,7.428,16.589,16.588C66.589,43.031,59.162,50.459,50,50.459z',
 				strokeOpacity: 1,
@@ -530,7 +638,8 @@
 				fillOpacity: 1,
 				rotation: 0,
 				scale: 0.4
-			};
+            };
+            
 			var infoWin = new google.maps.InfoWindow();
 			var markers = locations.map(function (location, i) {
 				var position = new google.maps.LatLng(location.lat, location.lng);
@@ -548,14 +657,15 @@
 					marker.icon = arrow_icon;
 				}
 
-
 				google.maps.event.addListener(marker, 'click', function (evt) {
 					infoWin.setContent(location.info);
 					infoWin.open(map, marker);
 				})
 				map.fitBounds(bounds);
 				return marker;
-			});
+            });
+
+
 			var mcOptions = {
 				styles: [{
 					url: 'img/cluster/m1.png',
@@ -567,6 +677,7 @@
 			};
 			var markerCluster = new MarkerClusterer(map, markers, mcOptions);
 
+            //map.setCenter(new google.maps.LatLng(45,19));
 		}
 
 		var locations = [{
