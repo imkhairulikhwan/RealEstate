@@ -30,6 +30,7 @@ namespace RealEstate.Controllers
 				)
 				.ToList();
 
+            //To set the centre point in the map when user search the university
             foreach (var item in listProperty)
             {
                 item.university = university;
