@@ -8,7 +8,7 @@ namespace RealEstate.Controllers
 {
     public class RegisterController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name, string email, string password, string student)
         {
             return View();
         }

@@ -18,7 +18,7 @@ namespace RealEstate.Controllers
 			_context = context;
 		}
 
-        public async Task<IActionResult> Index(string title, string type, string price, string bedrooms, string bathrooms, string area, string location, string address, string locality, string state, string country, string postal_code, string Garden, string Gym, string Internet, string Pool, string Window, string Parking, string School, string Bank, string Metro, string Airport, string propertyDescription, List<IFormFile> files, string featured)
+        public async Task<IActionResult> Index(string title, string type, string price, string bedrooms, string bathrooms, string area, string location, string address, string locality, string state, string country, string postal_code, string Garden, string Gym, string Internet, string Pool, string Window, string Parking, string School, string Bank, string Metro, string Airport, string propertyDescription, List<IFormFile> files, string featured, string lat, string lng)
         {
             //file upload
             long size = files.Sum(f => f.Length);
@@ -40,14 +40,25 @@ namespace RealEstate.Controllers
 
             if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(price) && !String.IsNullOrEmpty(propertyDescription))
 			{
-				object property = new Property { Description = title, Type = type, Price = price, Location = location, TotalBed = 3, TotalShower = 2,
+				object property = new Property {
+                    Description = title,
+                    Type = type,
+                    Price = price,
+                    Location = location,
+                    TotalBed = 3,
+                    TotalShower = 2,
 					SquareFeet = "1000", //area
-					ListedOn = DateTime.Now.ToShortDateString(), ListedBy = "Admin", Image = "4.jpg", Lat = 3.06460900000000M, Lng = 3.06460900000000M };
+					ListedOn = DateTime.Now.ToShortDateString(),
+                    ListedBy = "Admin",
+                    Image = "4.jpg",
+                    //Lat = 3.06460900000000M,
+                    //Lng = 3.06460900000000M
+                    Lat = Convert.ToDecimal(lat),
+                    Lng = Convert.ToDecimal(lng)
+                };
+
 				_context.Add(property);
-				_context.SaveChanges();
-
-                
-
+				_context.SaveChanges();                
                 // process uploaded files
                 // Don't rely on or trust the FileName property without validation.
 
