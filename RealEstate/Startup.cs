@@ -53,8 +53,8 @@ namespace RealEstate
 
             services.AddMvc();			
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
-			//var connection = @"Data Source=SQL6003.site4now.net;Initial Catalog=DB_A31034_navinest;User Id=DB_A31034_navinest_admin;Password=P@ssw0rd;";
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
+			var connection = @"Data Source=SQL6003.site4now.net;Initial Catalog=DB_A31034_navinest;User Id=DB_A31034_navinest_admin;Password=P@ssw0rd;";
             services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(connection));
         }
 
