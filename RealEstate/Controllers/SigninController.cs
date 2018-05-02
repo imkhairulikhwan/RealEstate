@@ -61,7 +61,43 @@ namespace RealEstate.Controllers
 			return View();
 		}
 
-		[HttpGet]
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(SignInViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    return RedirectToLocal(returnUrl, model.Email);
+                }
+                //if (result.RequiresTwoFactor)
+                //{
+                //    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
+                //}
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return RedirectToAction(nameof(Lockout));
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
 		[AllowAnonymous]
 		public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
 		{
@@ -79,9 +115,10 @@ namespace RealEstate.Controllers
 			// Sign in the user with this external login provider if the user already has a login.
 			var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 			if (result.Succeeded)
-			{
+			{               
 				_logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
-				return RedirectToLocal(returnUrl);
+                var name = info.Principal.Identities.ToList()[0].Name;
+                return RedirectToLocal(returnUrl, name);
 			}
 			if (result.IsLockedOut)
 			{
@@ -119,7 +156,8 @@ namespace RealEstate.Controllers
 					{
 						await _signInManager.SignInAsync(user, isPersistent: false);
 						_logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-						return RedirectToLocal(returnUrl);
+                        var name = info.Principal.Identities.ToList()[0].Name;
+                        return RedirectToLocal(returnUrl, name);
 					}
 				}
 				AddErrors(result);
@@ -129,9 +167,24 @@ namespace RealEstate.Controllers
 			return View(nameof(ExternalLogin), model);
 		}
 
-		#region Helpers
+        //[HttpPost]        
+        //public async Task<IActionResult> Logout(string test)
+        //{
+        //    await _signInManager.SignOutAsync();
+        //    _logger.LogInformation("User logged out.");
+        //    return RedirectToLocal("","");
+        //}
 
-		private void AddErrors(IdentityResult result)
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            return RedirectToLocal("", "");
+        }
+
+        #region Helpers
+
+        private void AddErrors(IdentityResult result)
 		{
 			foreach (var error in result.Errors)
 			{
@@ -139,7 +192,7 @@ namespace RealEstate.Controllers
 			}
 		}
 
-		private IActionResult RedirectToLocal(string returnUrl)
+		private IActionResult RedirectToLocal(string returnUrl, string name)
 		{
 			if (Url.IsLocalUrl(returnUrl))
 			{
@@ -147,7 +200,7 @@ namespace RealEstate.Controllers
 			}
 			else
 			{
-				return RedirectToAction(nameof(IndexController.Index), "Index");
+				return RedirectToAction(nameof(IndexController.Index), "Index", new { Name = name });
 			}
 		}
 

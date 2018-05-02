@@ -9,12 +9,18 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@model SignInViewModel
+
 @{
-    String username = SignInManager.IsSignedIn(User) ? @UserManager.GetUserName(User) : "Guest";
+    //String username = SignInManager.IsSignedIn(User) ? @UserManager.GetUserName(User) : "Guest";
+    String username = SignInManager.IsSignedIn(User) ? Model.Name : "Guest";
+    String email = @UserManager.GetUserName(User);
     String profilePicPath = "img/demo/guest.png";
     if(username != "Guest")
+    {
         profilePicPath = "img/demo/profile3.jpg";
     }
+}
 
 <!DOCTYPE html>
 
@@ -219,7 +225,7 @@
                             @{ 
                                 if (username == "Guest")
                                 {
-                                    <a class="nav-link" href="#" role="button" >
+                                    <a class="nav-link" href="Signin" role="button" >
                                         <span class="user-image" style="background-image:url(@profilePicPath);"></span> Hi, @username!
                                     </a>
                                 }
@@ -229,12 +235,13 @@
                                         <span class="user-image" style="background-image:url(@profilePicPath);"></span> Hi, @username!
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a asp-controller="My_profile" class="dropdown-item">My` Profile</a>
+                                        <a asp-controller="My_profile" asp-route-user="@email" class="dropdown-item">My Profile</a>
                                         <a asp-controller="My_password" class="dropdown-item">Change Password</a>
                                         <a asp-controller="My_notifications" class="dropdown-item">Notifications</a>
-                                        <a asp-controller="My_membership" class="dropdown-item">Membership</a>
-                                        <a asp-controller="My_payments" class="dropdown-item">Payments</a>
+                                        @*<a asp-controller="My_membership" class="dropdown-item">Membership</a>*@
+                                        <a asp-controller="My_payments" asp-route-user="@email" class="dropdown-item">Payments</a>
                                         <a asp-controller="My_account" class="dropdown-item">Account</a>
+                                        <a asp-controller="Signin" asp-action="Logout" method="post" class="dropdown-item">Sign Out</a>
                                     </div>
                                 }
                             }                            

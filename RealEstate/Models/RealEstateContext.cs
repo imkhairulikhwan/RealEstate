@@ -7,7 +7,8 @@ namespace RealEstate.Models
     public partial class RealEstateContext : DbContext
     {
         public virtual DbSet<TblDummy> TblDummy { get; set; }
-		public virtual DbSet<Property> Property { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Property> Property { get; set; }
 		public virtual DbSet<Agent> Agent { get; set; }
 
 		public RealEstateContext(DbContextOptions<RealEstateContext> options)
@@ -30,6 +31,11 @@ namespace RealEstate.Models
                 entity.ToTable("tblDummy");
 
                 entity.Property(e => e.Name).IsRequired();
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("Users");               
             });
         }
     }

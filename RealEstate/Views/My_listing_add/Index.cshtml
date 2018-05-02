@@ -301,20 +301,20 @@
                                                 <input type="text" class="form-control form-control-lg" name="area" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        @*<div class="col-md-6">
                                             <div class="form-group">
                                                 <label>MLS No.</label>
                                                 <input type="text" class="form-control form-control-lg" name="mlsno" placeholder="">
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <h3 class="subheadline">Location</h3>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Location</label>
-                                                <input type="hidden" id="lat" />
-                                                <input type="hidden" id="lng" />
+                                                <input type="hidden" id="lat" name="lat" />
+                                                <input type="hidden" id="lng" name="lng" />
                                                 <input type="text" class="form-control form-control-lg" name="location" id="autocomplete" placeholder="Enter your location">
                                             </div>
                                         </div>
@@ -507,8 +507,11 @@
             lat = place.geometry.location.lat();
             lng = place.geometry.location.lng();
 
-            document.getElementById('lat').value = lat;
-            document.getElementById('lng').value = lng;
+            //document.getElementById('lat').value = lat;
+            //document.getElementById('lng').value = lng;
+
+            $('#lat').val(lat);
+            $('#lng').val(lng);
 
             for (var component in componentForm) {
                 document.getElementById(component).value = '';

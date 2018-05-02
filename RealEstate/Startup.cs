@@ -25,8 +25,8 @@ namespace RealEstate
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-			services.AddDbContext<ApplicationDbContext>(options =>
+        {            
+            services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -53,8 +53,8 @@ namespace RealEstate
 
             services.AddMvc();			
 
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
-			var connection = @"Data Source=SQL6003.site4now.net;Initial Catalog=DB_A31034_navinest;User Id=DB_A31034_navinest_admin;Password=P@ssw0rd;";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=RealEstate;Trusted_Connection=True;ConnectRetryCount=0";
+			//var connection = @"Data Source=SQL6003.site4now.net;Initial Catalog=DB_A31034_navinest;User Id=DB_A31034_navinest_admin;Password=P@ssw0rd;";
             services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(connection));
         }
 

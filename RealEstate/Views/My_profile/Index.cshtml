@@ -8,6 +8,8 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@model  UserProfileViewModel
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,7 +151,7 @@
 														<li><a asp-controller="My_profile">My Profile</a></li>
 														<li><a asp-controller="My_password">Change Password</a></li>
 														<li><a asp-controller="My_notifications">Notifications</a></li>
-														<li><a asp-controller="My_membership">Membership</a></li>
+														@*<li><a asp-controller="My_membership">Membership</a></li>*@
 														<li><a asp-controller="My_payments">Payments</a></li>
 														<li><a asp-controller="My_account">Account</a></li>
 														<li class="title">Blog Pages</li>
@@ -177,7 +179,7 @@
 								<a asp-controller="My_profile" class="dropdown-item">My Profile</a>
 								<a asp-controller="My_password" class="dropdown-item">Change Password</a>
 								<a asp-controller="My_notifications" class="dropdown-item">Notifications</a>
-								<a asp-controller="My_membership" class="dropdown-item">Membership</a>
+								@*<a asp-controller="My_membership" class="dropdown-item">Membership</a>*@
 								<a asp-controller="My_payments" class="dropdown-item">Payments</a>
 								<a asp-controller="My_account" class="dropdown-item">Account</a>
 							</div>
@@ -212,7 +214,7 @@
 											<a asp-controller="My_profile" class="list-group-item active"><i class="fa fa-fw fa-pencil"></i> My Profile</a>
 											<a asp-controller="My_password" class="list-group-item"><i class="fa fa-fw fa-lock"></i> Change Password</a>
 											<a asp-controller="My_notifications" class="list-group-item"><i class="fa fa-fw fa-bell-o"></i> Notifications</a>
-											<a asp-controller="My_membership" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Membership</a>
+											@*<a asp-controller="My_membership" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Membership</a>*@
 											<a asp-controller="My_payments" class="list-group-item"><i class="fa fa-fw fa-credit-card"></i> Payments</a>
 											<a asp-controller="My_account" class="list-group-item"><i class="fa fa-fw fa-cog"></i> Account</a>
 										</div>
@@ -223,51 +225,54 @@
 								<div class="page-header bordered">
 									<h1>My profile <small>Manage your public profile</small></h1>
 								</div>
-								<form action="index.php">
+								@*<form action="index.php">*@
+                                <form id="MyProfileForm">
 									<h3 class="subheadline">Basic Information</h3>
 									<div class="row">
 										<div class="col-md-6">
-											<div class="form-group">
-												<label>First Name</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" value="John">
-											</div>
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                                @*<input type="text" class="form-control form-control-lg" placeholder="" value="@Model.FirstName">*@
+                                            </div>
 										</div>
 										<div class="col-md-6">
-											<div class="form-group">
-												<label>Last Name</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" value="Doe">
-											</div>
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 									</div>
-									<div class="form-group">
-										<label>Your Email</label>
-										<input type="text" class="form-control form-control-lg" value="john.doe@email.com">
-									</div>
+                                    <div class="form-group">
+                                        <label>Your Email</label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                    </div>
 									<div class="row">
 										<div class="col-md-6">
-											<div class="form-group">
-												<label>Phone</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" value="+14155552671">
-											</div>
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 										<div class="col-md-6">
-											<div class="form-group">
-												<label>Fax</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" value="">
-											</div>
+                                            <div class="form-group">
+                                                <label>Fax</label>
+                                                @Html.TextBoxFor(m => m.Fax, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 									</div>
-									<div class="form-group">
-										<label>About Me</label>
-										<textarea class="form-control form-control-lg text-editor" placeholder=""></textarea>
-									</div>
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        @Html.TextAreaFor(m => m.AboutMe, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                        @*<textarea asp-for="AboutMe" class="form-control form-control-lg text-editor" placeholder=""></textarea>*@
+                                    </div>
 									<h3 class="subheadline">Social Links</h3>
 									<div class="form-group">
 										<label>Twitter</label>
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-fw fa-twitter"></i></span>
-											<input type="text" class="form-control form-control-lg" placeholder="">
-										</div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-fw fa-twitter"></i></span>
+                                            <input type="text" class="form-control form-control-lg" placeholder="">                                            
+                                        </div>
 									</div>
 									<div class="form-group">
 										<label>Facebook</label>
@@ -291,10 +296,10 @@
 										</div>
 									</div>
 									<h3 class="subheadline">Agent/Company Profile</h3>
-									<div class="form-group">
-										<label>Agent/Company Title</label>
-										<input type="text" class="form-control form-control-lg">
-									</div>
+                                    <div class="form-group">
+                                        <label>Agent/Company Title</label>
+                                        @Html.TextBoxFor(m => m.AgentCompanyTitle, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                    </div>
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
@@ -311,35 +316,35 @@
 									</div>
 									<div class="row">
 										<div class="col-lg-6">
-											<div class="form-group">
-												<label>City</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="locality">
-											</div>
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                @Html.TextBoxFor(m => m.City, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 										<div class="col-lg-6">
-											<div class="form-group">
-												<label>State</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="administrative_area_level_1">
-											</div>
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                @Html.TextBoxFor(m => m.State, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-6">
-											<div class="form-group">
-												<label>Country</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="country">
-											</div>
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 										<div class="col-lg-6">
-											<div class="form-group">
-												<label>Zipcode</label>
-												<input type="text" class="form-control form-control-lg" placeholder="" id="postal_code">
-											</div>
+                                            <div class="form-group">
+                                                <label>Zipcode</label>
+                                                @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control form-control-lg", @placeholder = "", @required = "required" })
+                                            </div>
 										</div>
 									</div>
 									<hr>
 									<div class="form-group action">
-										<button type="submit" class="btn btn-lg btn-primary">Update Profile</button>
+										<button type="button" id="btnSubmit" class="btn btn-lg btn-primary">Update Profile</button>
 									</div>
 								</form>
 							</div>
@@ -446,7 +451,39 @@
 				'lists link image preview',
 			],
 			toolbar: 'undo redo | link | formatselect | bold italic underline  | alignleft aligncenter alignright alignjustify | bullist numlist'
-		});
+        });
+
+        var btnSubmit = $("#btnSubmit");
+        var myProfileForm = $("#MyProfileForm");
+
+        //  Attach event handler to submit button
+        btnSubmit.click(function () {
+            SubmitInfo(myProfileForm);
+        });
+
+
+        //  Submits the Info form to Controller
+        //  formContainer: (jQuery) The form model to submit
+        function SubmitInfo(formContainer) {
+            $.ajax({
+                url: "My_profile/UpdateProfile",
+                type: 'post',
+                data: formContainer.serialize(),
+                success: function (data) {
+                    if (data.IsSuccess) {
+                        // Clear the input tags
+                        formContainer.find("input[type='text']").each(function (i, element) {
+                            $(this).val('');
+                        });
+                    }
+
+                    alert(data.Message);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
 	</script>
 </body>
 </html>

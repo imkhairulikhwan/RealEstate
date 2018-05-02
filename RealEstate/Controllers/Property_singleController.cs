@@ -8,7 +8,7 @@ namespace RealEstate.Controllers
 {
     public class Property_singleController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
             return View();
         }
